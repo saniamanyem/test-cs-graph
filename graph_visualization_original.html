@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+        <style type="text/css">
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+        </style>
+    </head>
+    <body>
+        <div class="card" style="width: 100%">
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+            <div id="config"></div>
+        <script type="text/javascript">
+              var edges; var nodes; var allNodes; var allEdges; var nodeColors; var originalNodes; var network; var container; var options, data;
+              // draw graph (embedded cybersecurity data — original)
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "Phishing", "label": "Phishing", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Users", "label": "Users", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Malware", "label": "Malware", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SocialEngineering", "label": "SocialEngineering", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Endpoints", "label": "Endpoints", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "CommandAndControl", "label": "CommandAndControl", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ransomware", "label": "Ransomware", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Data", "label": "Data", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "CredentialTheft", "label": "CredentialTheft", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Credentials", "label": "Credentials", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "InsiderThreat", "label": "InsiderThreat", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Vulnerability", "label": "Vulnerability", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Exploit", "label": "Exploit", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Systems", "label": "Systems", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ZeroDay", "label": "ZeroDay", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ThreatActor", "label": "ThreatActor", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "BruteForce", "label": "BruteForce", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Organizations", "label": "Organizations", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Firewall", "label": "Firewall", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Network", "label": "Network", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "IDS", "label": "IDS", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Intrusion", "label": "Intrusion", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SIEM", "label": "SIEM", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Events", "label": "Events", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "EndpointProtection", "label": "EndpointProtection", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "MFA", "label": "MFA", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Accounts", "label": "Accounts", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Encryption", "label": "Encryption", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "PatchManagement", "label": "PatchManagement", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Vulnerabilities", "label": "Vulnerabilities", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SecurityPolicy", "label": "SecurityPolicy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AccessControl", "label": "AccessControl", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "IncidentResponse", "label": "IncidentResponse", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Incidents", "label": "Incidents", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "LogAnalysis", "label": "LogAnalysis", "shape": "dot","size":10}, {"color": "#97c2fc","id":"Anomalies","label":"Anomalies","shape":"dot","size":10},{"color":"#97c2fc","id":"NetworkTraffic","label":"NetworkTraffic","shape":"dot","size":10},{"color":"#97c2fc","id":"IndicatorsOfCompromise","label":"IndicatorsOfCompromise","shape":"dot","size":10},{"color":"#97c2fc","id":"IOC","label":"IOC","shape":"dot","size":10},{"color":"#97c2fc","id":"Compromise","label":"Compromise","shape":"dot","size":10},{"color":"#97c2fc","id":"VPN","label":"VPN","shape":"dot","size":10},{"color":"#97c2fc","id":"RemoteAccess","label":"RemoteAccess","shape":"dot","size":10},{"color":"#97c2fc","id":"DataBreach","label":"DataBreach","shape":"dot","size":10},{"color":"#97c2fc","id":"ThreatIntel","label":"ThreatIntel","shape":"dot","size":10},{"color":"#97c2fc","id":"Indicators","label":"Indicators","shape":"dot","size":10}]);
+                  edges = new vis.DataSet([{"arrows":"to","from":"Phishing","label":"Targets","to":"Users","width":1},{"arrows":"to","from":"Phishing","label":"Delivers","to":"Malware","width":1},{"arrows":"to","from":"Malware","label":"Infects","to":"Endpoints","width":1},{"arrows":"to","from":"Malware","label":"Uses","to":"CommandAndControl","width":1},{"arrows":"to","from":"SocialEngineering","label":"Manipulates","to":"Users","width":1},{"arrows":"to","from":"Ransomware","label":"Encrypts","to":"Data","width":1},{"arrows":"to","from":"CredentialTheft","label":"Steals","to":"Credentials","width":1},{"arrows":"to","from":"InsiderThreat","label":"Compromises","to":"Credentials","width":1},{"arrows":"to","from":"Vulnerability","label":"Allows","to":"Exploit","width":1},{"arrows":"to","from":"Exploit","label":"Breaches","to":"Systems","width":1},{"arrows":"to","from":"ZeroDay","label":"IsExploitedBy","to":"ThreatActor","width":1},{"arrows":"to","from":"ThreatActor","label":"Uses","to":"Phishing","width":1},{"arrows":"to","from":"ThreatActor","label":"Uses","to":"Malware","width":1},{"arrows":"to","from":"ThreatActor","label":"Uses","to":"BruteForce","width":1},{"arrows":"to","from":"ThreatActor","label":"Targets","to":"Organizations","width":1},{"arrows":"to","from":"Firewall","label":"Protects","to":"Network","width":1},{"arrows":"to","from":"IDS","label":"Detects","to":"Intrusion","width":1},{"arrows":"to","from":"SIEM","label":"Correlates","to":"Events","width":1},{"arrows":"to","from":"EndpointProtection","label":"Prevents","to":"Malware","width":1},{"arrows":"to","from":"MFA","label":"Secures","to":"Accounts","width":1},{"arrows":"to","from":"Encryption","label":"Protects","to":"Data","width":1},{"arrows":"to","from":"PatchManagement","label":"Fixes","to":"Vulnerabilities","width":1},{"arrows":"to","from":"SecurityPolicy","label":"Defines","to":"AccessControl","width":1},{"arrows":"to","from":"AccessControl","label":"Restricts","to":"Users","width":1},{"arrows":"to","from":"IncidentResponse","label":"Remediates","to":"Incidents","width":1},{"arrows":"to","from":"LogAnalysis","label":"Identifies","to":"Anomalies","width":1},{"arrows":"to","from":"NetworkTraffic","label":"Contains","to":"IndicatorsOfCompromise","width":1},{"arrows":"to","from":"IOC","label":"Signals","to":"Compromise","width":1},{"arrows":"to","from":"VPN","label":"Secures","to":"RemoteAccess","width":1},{"arrows":"to","from":"DataBreach","label":"Exposes","to":"Data","width":1},{"arrows":"to","from":"ThreatIntel","label":"Enriches","to":"Indicators","width":1}]);
+                  data = {nodes: nodes, edges: edges};
+                  var options = {"configure":{"enabled":true,"filter":["physics"]},"edges":{"color":{"inherit":true},"smooth":{"enabled":true,"type":"dynamic"}},"interaction":{"dragNodes":true,"hideEdgesOnDrag":false,"hideNodesOnDrag":false},"physics":{"enabled":true,"stabilization":{"enabled":true,"fit":true,"iterations":1000,"onlyDynamicEdges":false,"updateInterval":50}}};
+                  options.configure["container"] = document.getElementById("config");
+                  network = new vis.Network(container, data, options);
+                  return network;
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

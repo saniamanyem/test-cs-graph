@@ -15,8 +15,7 @@ except ImportError:
 
 
 class KnowledgeGraph:
-    """Simple knowledge graph representation using nodes and triples."""
-
+    
     def __init__(self) -> None:
         self.nodes: Dict[str, Dict[str, Any]] = {}
         self.triples: List[Dict[str, str]] = []
@@ -54,7 +53,7 @@ class KnowledgeGraph:
             json.dump(self.to_dict(), file, indent=2, ensure_ascii=False)
 
     def to_networkx(self) -> Optional[Any]:
-        """Convert KnowledgeGraph to NetworkX directed graph."""
+        
         if nx is None:
             print("NetworkX not installed. Install with: pip install networkx")
             return None
@@ -76,7 +75,7 @@ class KnowledgeGraph:
         return G
 
     def render_html(self, output_path: str = "graph_visualization.html") -> None:
-        """Render the knowledge graph as an interactive HTML visualization."""
+
         if Network is None:
             print("Pyvis not installed. Install with: pip install pyvis")
             return

@@ -89,15 +89,91 @@
 
               
 
-              // This method is responsible for drawing the graph, returns the drawn network
-              function drawGraph() {
+                            // This method is responsible for drawing the graph, returns the drawn network
+                            function drawGraph() {
                   var container = document.getElementById('mynetwork');
 
-                  
-
-                  // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "Phishing", "label": "Phishing", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Users", "label": "Users", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Malware", "label": "Malware", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Endpoints", "label": "Endpoints", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "CommandAndControl", "label": "CommandAndControl", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SocialEngineering", "label": "SocialEngineering", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ransomware", "label": "Ransomware", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Data", "label": "Data", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "CredentialTheft", "label": "CredentialTheft", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Credentials", "label": "Credentials", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "InsiderThreat", "label": "InsiderThreat", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Vulnerability", "label": "Vulnerability", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Exploit", "label": "Exploit", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Systems", "label": "Systems", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ZeroDay", "label": "ZeroDay", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ThreatActor", "label": "ThreatActor", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "BruteForce", "label": "BruteForce", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Organizations", "label": "Organizations", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Firewall", "label": "Firewall", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Network", "label": "Network", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "IDS", "label": "IDS", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Intrusion", "label": "Intrusion", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SIEM", "label": "SIEM", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Events", "label": "Events", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "EndpointProtection", "label": "EndpointProtection", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "MFA", "label": "MFA", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Accounts", "label": "Accounts", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Encryption", "label": "Encryption", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "PatchManagement", "label": "PatchManagement", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Vulnerabilities", "label": "Vulnerabilities", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "SecurityPolicy", "label": "SecurityPolicy", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AccessControl", "label": "AccessControl", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "IncidentResponse", "label": "IncidentResponse", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Incidents", "label": "Incidents", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "LogAnalysis", "label": "LogAnalysis", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Anomalies", "label": "Anomalies", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "NetworkTraffic", "label": "NetworkTraffic", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "IndicatorsOfCompromise", "label": "IndicatorsOfCompromise", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "IOC", "label": "IOC", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Compromise", "label": "Compromise", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "VPN", "label": "VPN", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "RemoteAccess", "label": "RemoteAccess", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "DataBreach", "label": "DataBreach", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ThreatIntel", "label": "ThreatIntel", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Indicators", "label": "Indicators", "shape": "dot", "size": 10}]);
-                  edges = new vis.DataSet([{"arrows": "to", "from": "Phishing", "label": "Targets", "to": "Users", "width": 1}, {"arrows": "to", "from": "Phishing", "label": "Delivers", "to": "Malware", "width": 1}, {"arrows": "to", "from": "Malware", "label": "Infects", "to": "Endpoints", "width": 1}, {"arrows": "to", "from": "Malware", "label": "Uses", "to": "CommandAndControl", "width": 1}, {"arrows": "to", "from": "SocialEngineering", "label": "Manipulates", "to": "Users", "width": 1}, {"arrows": "to", "from": "Ransomware", "label": "Encrypts", "to": "Data", "width": 1}, {"arrows": "to", "from": "CredentialTheft", "label": "Steals", "to": "Credentials", "width": 1}, {"arrows": "to", "from": "InsiderThreat", "label": "Compromises", "to": "Credentials", "width": 1}, {"arrows": "to", "from": "Vulnerability", "label": "Allows", "to": "Exploit", "width": 1}, {"arrows": "to", "from": "Exploit", "label": "Breaches", "to": "Systems", "width": 1}, {"arrows": "to", "from": "ZeroDay", "label": "IsExploitedBy", "to": "ThreatActor", "width": 1}, {"arrows": "to", "from": "ThreatActor", "label": "Uses", "to": "Phishing", "width": 1}, {"arrows": "to", "from": "ThreatActor", "label": "Uses", "to": "Malware", "width": 1}, {"arrows": "to", "from": "ThreatActor", "label": "Uses", "to": "BruteForce", "width": 1}, {"arrows": "to", "from": "ThreatActor", "label": "Targets", "to": "Organizations", "width": 1}, {"arrows": "to", "from": "Firewall", "label": "Protects", "to": "Network", "width": 1}, {"arrows": "to", "from": "IDS", "label": "Detects", "to": "Intrusion", "width": 1}, {"arrows": "to", "from": "SIEM", "label": "Correlates", "to": "Events", "width": 1}, {"arrows": "to", "from": "EndpointProtection", "label": "Prevents", "to": "Malware", "width": 1}, {"arrows": "to", "from": "MFA", "label": "Secures", "to": "Accounts", "width": 1}, {"arrows": "to", "from": "Encryption", "label": "Protects", "to": "Data", "width": 1}, {"arrows": "to", "from": "PatchManagement", "label": "Fixes", "to": "Vulnerabilities", "width": 1}, {"arrows": "to", "from": "SecurityPolicy", "label": "Defines", "to": "AccessControl", "width": 1}, {"arrows": "to", "from": "AccessControl", "label": "Restricts", "to": "Users", "width": 1}, {"arrows": "to", "from": "IncidentResponse", "label": "Remediates", "to": "Incidents", "width": 1}, {"arrows": "to", "from": "LogAnalysis", "label": "Identifies", "to": "Anomalies", "width": 1}, {"arrows": "to", "from": "NetworkTraffic", "label": "Contains", "to": "IndicatorsOfCompromise", "width": 1}, {"arrows": "to", "from": "IOC", "label": "Signals", "to": "Compromise", "width": 1}, {"arrows": "to", "from": "VPN", "label": "Secures", "to": "RemoteAccess", "width": 1}, {"arrows": "to", "from": "DataBreach", "label": "Exposes", "to": "Data", "width": 1}, {"arrows": "to", "from": "ThreatIntel", "label": "Enriches", "to": "Indicators", "width": 1}]);
+                                    // Embedded graph data (converted from cybersecurity_relationships.csv)
+                                    nodes = new vis.DataSet([
+                                        {"id":"AccessControl","label":"AccessControl","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Alarm","label":"Alarm","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Applications","label":"Applications","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"BackupPower","label":"BackupPower","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Building","label":"Building","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"CCTV","label":"CCTV","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Communications","label":"Communications","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Dispatch","label":"Dispatch","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"EMS","label":"EMS","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Evacuation","label":"Evacuation","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"FirstResponder","label":"FirstResponder","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Fire","label":"Fire","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"FireAlarm","label":"FireAlarm","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"FireTruck","label":"FireTruck","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Hydrant","label":"Hydrant","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"HVAC","label":"HVAC","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"ITSystems","label":"ITSystems","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"ITSystemsDown","label":"ITSystemsDown","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"IncidentCommander","label":"IncidentCommander","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"MedicalInjury","label":"MedicalInjury","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Occupants","label":"Occupants","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"PowerFailure","label":"PowerFailure","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"PowerSystem","label":"PowerSystem","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Radio","label":"Radio","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Servers","label":"Servers","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Smoke","label":"Smoke","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"SmokeDetector","label":"SmokeDetector","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"SprinklerSystem","label":"SprinklerSystem","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"VideoEvidence","label":"VideoEvidence","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Workstations","label":"Workstations","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Water","label":"Water","shape":"dot","size":10,"color":"#97c2fc"},
+                                        {"id":"Entry","label":"Entry","shape":"dot","size":10,"color":"#97c2fc"}
+                                    ]);
+                                    edges = new vis.DataSet([
+                                        {"arrows":"to","from":"Building","label":"Contains","to":"ITSystems","width":1},
+                                        {"arrows":"to","from":"Building","label":"Contains","to":"FireAlarm","width":1},
+                                        {"arrows":"to","from":"Building","label":"Contains","to":"HVAC","width":1},
+                                        {"arrows":"to","from":"Building","label":"Contains","to":"SprinklerSystem","width":1},
+                                        {"arrows":"to","from":"Building","label":"Contains","to":"PowerSystem","width":1},
+                                        {"arrows":"to","from":"ITSystems","label":"Includes","to":"Servers","width":1},
+                                        {"arrows":"to","from":"ITSystems","label":"Includes","to":"Workstations","width":1},
+                                        {"arrows":"to","from":"Servers","label":"Hosts","to":"Applications","width":1},
+                                        {"arrows":"to","from":"Servers","label":"DependsOn","to":"PowerSystem","width":1},
+                                        {"arrows":"to","from":"PowerSystem","label":"Feeds","to":"ITSystems","width":1},
+                                        {"arrows":"to","from":"Fire","label":"OccursIn","to":"Building","width":1},
+                                        {"arrows":"to","from":"Fire","label":"Triggers","to":"FireAlarm","width":1},
+                                        {"arrows":"to","from":"Fire","label":"Produces","to":"Smoke","width":1},
+                                        {"arrows":"to","from":"Smoke","label":"DetectedBy","to":"SmokeDetector","width":1},
+                                        {"arrows":"to","from":"SmokeDetector","label":"Notifies","to":"FireAlarm","width":1},
+                                        {"arrows":"to","from":"FireAlarm","label":"Alerts","to":"Occupants","width":1},
+                                        {"arrows":"to","from":"FireAlarm","label":"Alerts","to":"FirstResponder","width":1},
+                                        {"arrows":"to","from":"SprinklerSystem","label":"Suppresses","to":"Fire","width":1},
+                                        {"arrows":"to","from":"HVAC","label":"Spreads","to":"Smoke","width":1},
+                                        {"arrows":"to","from":"FirstResponder","label":"RespondsTo","to":"Fire","width":1},
+                                        {"arrows":"to","from":"FirstResponder","label":"Enters","to":"Building","width":1},
+                                        {"arrows":"to","from":"FirstResponder","label":"Uses","to":"Radio","width":1},
+                                        {"arrows":"to","from":"FirstResponder","label":"CommunicatesWith","to":"Dispatch","width":1},
+                                        {"arrows":"to","from":"Dispatch","label":"Notifies","to":"FirstResponder","width":1},
+                                        {"arrows":"to","from":"FireTruck","label":"Carries","to":"FirstResponder","width":1},
+                                        {"arrows":"to","from":"FireTruck","label":"ConnectsTo","to":"Hydrant","width":1},
+                                        {"arrows":"to","from":"Hydrant","label":"Supplies","to":"Water","width":1},
+                                        {"arrows":"to","from":"FirstResponder","label":"CoordinatesWith","to":"IncidentCommander","width":1},
+                                        {"arrows":"to","from":"IncidentCommander","label":"Directs","to":"FirstResponder","width":1},
+                                        {"arrows":"to","from":"Evacuation","label":"Involves","to":"Occupants","width":1},
+                                        {"arrows":"to","from":"Occupants","label":"Follow","to":"Evacuation","width":1},
+                                        {"arrows":"to","from":"CCTV","label":"Monitors","to":"Building","width":1},
+                                        {"arrows":"to","from":"CCTV","label":"Provides","to":"VideoEvidence","width":1},
+                                        {"arrows":"to","from":"AccessControl","label":"Restricts","to":"Entry","width":1},
+                                        {"arrows":"to","from":"AccessControl","label":"Allows","to":"FirstResponder","width":1},
+                                        {"arrows":"to","from":"BackupPower","label":"ActivatesDuring","to":"PowerFailure","width":1},
+                                        {"arrows":"to","from":"PowerFailure","label":"Causes","to":"ITSystemsDown","width":1},
+                                        {"arrows":"to","from":"ITSystemsDown","label":"Affects","to":"Communications","width":1},
+                                        {"arrows":"to","from":"Smoke","label":"Causes","to":"Evacuation","width":1},
+                                        {"arrows":"to","from":"Fire","label":"Damages","to":"Servers","width":1},
+                                        {"arrows":"to","from":"Fire","label":"Damages","to":"Workstations","width":1},
+                                        {"arrows":"to","from":"MedicalInjury","label":"Requires","to":"EMS","width":1},
+                                        {"arrows":"to","from":"FirstResponder","label":"CoordinatesWith","to":"EMS","width":1},
+                                        {"arrows":"to","from":"Alarm","label":"IsTriggeredBy","to":"Fire","width":1}
+                                    ]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
